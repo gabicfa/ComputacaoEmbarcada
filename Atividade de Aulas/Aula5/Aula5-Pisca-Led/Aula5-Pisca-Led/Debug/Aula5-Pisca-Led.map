@@ -6712,7 +6712,7 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
  .comment       0x00000059       0x5a src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .comment       0x00000059       0x5a src/main.o
 
-.debug_info     0x00000000    0x12d69
+.debug_info     0x00000000    0x12d65
  .debug_info    0x00000000     0x125b src/ASF/common/services/clock/same70/sysclk.o
  .debug_info    0x0000125b      0xaf5 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o
  .debug_info    0x00001d50      0xabd src/ASF/common/utils/stdio/read.o
@@ -6726,7 +6726,7 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
  .debug_info    0x0000e07d     0x155e src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
  .debug_info    0x0000f5db      0x55b src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
  .debug_info    0x0000fb36      0xda4 src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_info    0x000108da     0x248f src/main.o
+ .debug_info    0x000108da     0x248b src/main.o
 
 .debug_abbrev   0x00000000     0x2832
  .debug_abbrev  0x00000000      0x31f src/ASF/common/services/clock/same70/sysclk.o
@@ -6985,7 +6985,7 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
  .debug_macro   0x0001e0a8       0x16 src/main.o
  .debug_macro   0x0001e0be       0x1c src/main.o
 
-.debug_line     0x00000000     0xa0c2
+.debug_line     0x00000000     0xa0c1
  .debug_line    0x00000000      0xb4f src/ASF/common/services/clock/same70/sysclk.o
  .debug_line    0x00000b4f      0xa01 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o
  .debug_line    0x00001550      0x9e7 src/ASF/common/utils/stdio/read.o
@@ -6999,7 +6999,7 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
  .debug_line    0x00007b42      0xa73 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
  .debug_line    0x000085b5      0x7e9 src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
  .debug_line    0x00008d9e      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
- .debug_line    0x000091a9      0xf19 src/main.o
+ .debug_line    0x000091a9      0xf18 src/main.o
 
 .debug_str      0x00000000    0x8b004
  .debug_str     0x00000000    0x85c45 src/ASF/common/services/clock/same70/sysclk.o

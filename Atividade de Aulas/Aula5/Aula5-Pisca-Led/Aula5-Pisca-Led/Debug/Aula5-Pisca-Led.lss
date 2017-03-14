@@ -19,23 +19,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   7 .comment      00000059  00000000  00000000  000209ea  2**0
                   CONTENTS, READONLY
-  8 .debug_info   00012d69  00000000  00000000  00020a43  2**0
+  8 .debug_info   00012d65  00000000  00000000  00020a43  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_abbrev 00002832  00000000  00000000  000337ac  2**0
+  9 .debug_abbrev 00002832  00000000  00000000  000337a8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00003ebc  00000000  00000000  00035fde  2**0
+ 10 .debug_loc    00003ebc  00000000  00000000  00035fda  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00000998  00000000  00000000  00039e9a  2**0
+ 11 .debug_aranges 00000998  00000000  00000000  00039e96  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000a30  00000000  00000000  0003a832  2**0
+ 12 .debug_ranges 00000a30  00000000  00000000  0003a82e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_macro  0001e0da  00000000  00000000  0003b262  2**0
+ 13 .debug_macro  0001e0da  00000000  00000000  0003b25e  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_line   0000a0c2  00000000  00000000  0005933c  2**0
+ 14 .debug_line   0000a0c1  00000000  00000000  00059338  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_str    0008b004  00000000  00000000  000633fe  2**0
+ 15 .debug_str    0008b004  00000000  00000000  000633f9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_frame  00002038  00000000  00000000  000ee404  2**2
+ 16 .debug_frame  00002038  00000000  00000000  000ee400  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -7280,8 +7280,8 @@ __STATIC_INLINE uint32_t SysTick_Config(uint32_t ticks)
   403dd4:	31207261 	.word	0x31207261
   403dd8:	30322033 	.word	0x30322033
   403ddc:	32203731 	.word	0x32203731
-  403de0:	35323a31 	.word	0x35323a31
-  403de4:	2031313a 	.word	0x2031313a
+  403de0:	33333a31 	.word	0x33333a31
+  403de4:	2038343a 	.word	0x2038343a
   403de8:	000d2d2d 	.word	0x000d2d2d
   403dec:	666e6f43 	.word	0x666e6f43
   403df0:	72756769 	.word	0x72756769

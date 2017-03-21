@@ -204,7 +204,6 @@ static void configure_tc(void)
 	/* Enable PCK output */
 	pmc_disable_pck(PMC_PCK_3);
 	pmc_switch_pck_to_sclk(PMC_PCK_3, PMC_PCK_PRES(0));
-	pmc_enable_pck(PMC_PCK_3);
 #endif
 
 	/** Configure TC for a 4Hz frequency and trigger on RC compare. */

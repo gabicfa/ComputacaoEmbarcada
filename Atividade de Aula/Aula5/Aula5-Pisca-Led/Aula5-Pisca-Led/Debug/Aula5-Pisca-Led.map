@@ -7001,7 +7001,7 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
  .debug_line    0x00008d9e      0x40b src/ASF/sam/utils/syscalls/gcc/syscalls.o
  .debug_line    0x000091a9      0xf18 src/main.o
 
-.debug_str      0x00000000    0x8b004
+.debug_str      0x00000000    0x8b081
  .debug_str     0x00000000    0x85c45 src/ASF/common/services/clock/same70/sysclk.o
                               0x862fe (size before relaxing)
  .debug_str     0x00085c45       0x94 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o
@@ -7028,8 +7028,8 @@ OUTPUT(Aula5-Pisca-Led.elf elf32-littlearm)
                               0x72833 (size before relaxing)
  .debug_str     0x00089443      0x778 src/ASF/sam/utils/syscalls/gcc/syscalls.o
                                0x72f9 (size before relaxing)
- .debug_str     0x00089bbb     0x1449 src/main.o
-                              0x88685 (size before relaxing)
+ .debug_str     0x00089bbb     0x14c6 src/main.o
+                              0x88684 (size before relaxing)
 
 .debug_frame    0x00000000     0x2038
  .debug_frame   0x00000000       0x88 src/ASF/common/services/clock/same70/sysclk.o

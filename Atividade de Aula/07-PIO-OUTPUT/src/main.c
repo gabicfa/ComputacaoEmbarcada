@@ -277,12 +277,18 @@ int main(void)
 	int s;
 	while(1){
 		for (int i=0; i<50000000;i++){
-			if (s==1){
+			if(s==1){
 				PIOC->PIO_SODR = (1 << 8);// PIOC= LED_PIO, 8 = LED_PIN
+				LED1_PIO->PIO_SODR = (1<<LED1_PIN);
+				LED2_PIO->PIO_SODR = (1<<LED2_PIN);
+				LED3_PIO->PIO_SODR = (1<<LED3_PIN);
 				s=0;
 			}
 			else{
 				PIOC->PIO_CODR = (1 << 8);// PIOC= LED_PIO, 8 = LED_PIN
+				LED1_PIO->PIO_CODR = (1<<LED1_PIN);
+				LED2_PIO->PIO_CODR = (1<<LED2_PIN);
+				LED3_PIO->PIO_CODR = (1<<LED3_PIN);
 				s=1;
 			}
 		}

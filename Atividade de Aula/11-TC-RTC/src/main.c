@@ -248,13 +248,17 @@ void RTC_Handler(void)
       
       /* incrementa minuto */
       if(minuto>=59){
+		  minuto = 0;
 		 if(hora>=23){
+			 hora=0;
 			 if(dia>=30){
-				 if(mes>=11){
+				 dia =1;
+				 if(mes>=12){
+					 mes =1;
 					 ano++;
 				 }
 				 else{
-					 mes++:
+					 mes++;
 				 }
 				 
 			 }
@@ -263,7 +267,7 @@ void RTC_Handler(void)
 			 }
 		 }
 		 else{
-			 hora++:
+			 hora++;
 		 }
 	  }
 	  else{

@@ -246,32 +246,32 @@ void RTC_Handler(void)
       rtc_get_date(RTC, &ano, &mes, &dia, NULL);
       rtc_get_time(RTC, &hora, &minuto, &segundo);
       
-      /* incrementa minuto */
-		if(minuto>=59){
-			minuto = 0;
-			if(hora>=23){
-				hora=0;
-				if(dia>=30){
-					dia =1;
-					if(mes>=12){
-						mes =1;
-						ano++;
-					}
-					else{
-						mes++;
-					}	 
+    /* incrementa minuto */
+	if(minuto>=59){
+		minuto = 0;
+		if(hora>=23){
+			hora=0;
+			if(dia>=30){
+				dia =1;
+				if(mes>=12){
+					mes =1;
+					ano++;
 				}
 				else{
-					dia++;
-				}
+					mes++;
+				}	 
 			}
 			else{
-				hora++;
+				dia++;
 			}
 		}
 		else{
-			minuto++;
+			hora++;
 		}
+	}
+	else{
+		minuto++;
+	}
 	  
   
       /* configura novo alarme do RTC */

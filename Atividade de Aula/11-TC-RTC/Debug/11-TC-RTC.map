@@ -7222,7 +7222,7 @@ OUTPUT(11-TC-RTC.elf elf32-littlearm)
  .debug_macro   0x0001c6db       0x16 src/main.o
  .debug_macro   0x0001c6f1       0x1c src/main.o
 
-.debug_line     0x00000000     0x7b04
+.debug_line     0x00000000     0x7b03
  .debug_line    0x00000000      0xc67 src/ASF/common/services/clock/same70/sysclk.o
  .debug_line    0x00000c67      0xa09 src/ASF/common/utils/interrupt/interrupt_sam_nvic.o
  .debug_line    0x00001670      0xe17 src/ASF/sam/drivers/pio/pio.o
@@ -7232,7 +7232,7 @@ OUTPUT(11-TC-RTC.elf elf32-littlearm)
  .debug_line    0x00004c5a      0xb8c src/ASF/sam/drivers/tc/tc.o
  .debug_line    0x000057e6      0xac0 src/ASF/sam/utils/cmsis/same70/source/templates/gcc/startup_same70.o
  .debug_line    0x000062a6      0x819 src/ASF/sam/utils/cmsis/same70/source/templates/system_same70.o
- .debug_line    0x00006abf     0x1045 src/main.o
+ .debug_line    0x00006abf     0x1044 src/main.o
 
 .debug_str      0x00000000    0x8963f
  .debug_str     0x00000000    0x856a1 src/ASF/common/services/clock/same70/sysclk.o

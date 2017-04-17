@@ -29,9 +29,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  12 .debug_macro  0001c70d  00000000  00000000  0003481b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   00007b04  00000000  00000000  00050f28  2**0
+ 13 .debug_line   00007b03  00000000  00000000  00050f28  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    0008963f  00000000  00000000  00058a2c  2**0
+ 14 .debug_str    0008963f  00000000  00000000  00058a2b  2**0
                   CONTENTS, READONLY, DEBUGGING
  15 .debug_frame  000022a8  00000000  00000000  000e206c  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -2981,20 +2981,20 @@ void but1_Handler(){
   401918:	b580      	push	{r7, lr}
   40191a:	b082      	sub	sp, #8
   40191c:	af00      	add	r7, sp, #0
-    /*
-     *  limpa interrupcao do PIO
-     */
-    uint32_t pioIntStatus;
-    pioIntStatus =  pio_get_interrupt_status(BUT1_PIO);
+	/*
+	*  limpa interrupcao do PIO
+	*/
+	uint32_t pioIntStatus;
+	pioIntStatus =  pio_get_interrupt_status(BUT1_PIO);
   40191e:	4810      	ldr	r0, [pc, #64]	; (401960 <but1_Handler+0x48>)
   401920:	4b10      	ldr	r3, [pc, #64]	; (401964 <but1_Handler+0x4c>)
   401922:	4798      	blx	r3
   401924:	6078      	str	r0, [r7, #4]
     
-   /**
-    *  Toggle status led
-    */
-   if(pio_get_output_data_status(LED1_PIO, LED1_PIN_MASK)){
+	/**
+	*  Toggle status led
+	*/
+	if(pio_get_output_data_status(LED1_PIO, LED1_PIN_MASK)){
   401926:	2101      	movs	r1, #1
   401928:	480f      	ldr	r0, [pc, #60]	; (401968 <but1_Handler+0x50>)
   40192a:	4b10      	ldr	r3, [pc, #64]	; (40196c <but1_Handler+0x54>)
@@ -3002,29 +3002,29 @@ void but1_Handler(){
   40192e:	4603      	mov	r3, r0
   401930:	2b00      	cmp	r3, #0
   401932:	d008      	beq.n	401946 <but1_Handler+0x2e>
-    pio_clear(LED1_PIO, LED1_PIN_MASK);
+		pio_clear(LED1_PIO, LED1_PIN_MASK);
   401934:	2101      	movs	r1, #1
   401936:	480c      	ldr	r0, [pc, #48]	; (401968 <but1_Handler+0x50>)
   401938:	4b0d      	ldr	r3, [pc, #52]	; (401970 <but1_Handler+0x58>)
   40193a:	4798      	blx	r3
-	tc_start(TC0, 1);
+		tc_start(TC0, 1);
   40193c:	2101      	movs	r1, #1
   40193e:	480d      	ldr	r0, [pc, #52]	; (401974 <but1_Handler+0x5c>)
   401940:	4b0d      	ldr	r3, [pc, #52]	; (401978 <but1_Handler+0x60>)
   401942:	4798      	blx	r3
-   }
-      else{
-	      pio_set(LED1_PIO,LED1_PIN_MASK);
-	      tc_stop(TC0, 1);
-      }
+	}
+	else{
+		pio_set(LED1_PIO,LED1_PIN_MASK);
+		tc_stop(TC0, 1);
+	}
 }
   401944:	e007      	b.n	401956 <but1_Handler+0x3e>
-	      pio_set(LED1_PIO,LED1_PIN_MASK);
+		pio_set(LED1_PIO,LED1_PIN_MASK);
   401946:	2101      	movs	r1, #1
   401948:	4807      	ldr	r0, [pc, #28]	; (401968 <but1_Handler+0x50>)
   40194a:	4b0c      	ldr	r3, [pc, #48]	; (40197c <but1_Handler+0x64>)
   40194c:	4798      	blx	r3
-	      tc_stop(TC0, 1);
+		tc_stop(TC0, 1);
   40194e:	2101      	movs	r1, #1
   401950:	4808      	ldr	r0, [pc, #32]	; (401974 <but1_Handler+0x5c>)
   401952:	4b0b      	ldr	r3, [pc, #44]	; (401980 <but1_Handler+0x68>)
@@ -3046,24 +3046,27 @@ void but1_Handler(){
   401980:	00401305 	.word	0x00401305
 
 00401984 <but2_Handler>:
+/**
+ *  Handle Interrupcao botao 2
+ */
 void but2_Handler(){
   401984:	b580      	push	{r7, lr}
   401986:	b082      	sub	sp, #8
   401988:	af00      	add	r7, sp, #0
-    /*
-     *  limpa interrupcao do PIO
-     */
-    uint32_t pioIntStatus;
-    pioIntStatus =  pio_get_interrupt_status(BUT2_PIO);
+	/*
+	*  limpa interrupcao do PIO
+	*/
+	uint32_t pioIntStatus;
+	pioIntStatus =  pio_get_interrupt_status(BUT2_PIO);
   40198a:	4811      	ldr	r0, [pc, #68]	; (4019d0 <but2_Handler+0x4c>)
   40198c:	4b11      	ldr	r3, [pc, #68]	; (4019d4 <but2_Handler+0x50>)
   40198e:	4798      	blx	r3
   401990:	6078      	str	r0, [r7, #4]
     
-   /**
-    *  Toggle status led
-    */
-   if(pio_get_output_data_status(LED2_PIO, LED2_PIN_MASK)){
+	/**
+	*  Toggle status led
+	*/
+	if(pio_get_output_data_status(LED2_PIO, LED2_PIN_MASK)){
   401992:	f04f 4180 	mov.w	r1, #1073741824	; 0x40000000
   401996:	480e      	ldr	r0, [pc, #56]	; (4019d0 <but2_Handler+0x4c>)
   401998:	4b0f      	ldr	r3, [pc, #60]	; (4019d8 <but2_Handler+0x54>)
@@ -3071,29 +3074,29 @@ void but2_Handler(){
   40199c:	4603      	mov	r3, r0
   40199e:	2b00      	cmp	r3, #0
   4019a0:	d009      	beq.n	4019b6 <but2_Handler+0x32>
-    pio_clear(LED2_PIO, LED2_PIN_MASK);
+		pio_clear(LED2_PIO, LED2_PIN_MASK);
   4019a2:	f04f 4180 	mov.w	r1, #1073741824	; 0x40000000
   4019a6:	480a      	ldr	r0, [pc, #40]	; (4019d0 <but2_Handler+0x4c>)
   4019a8:	4b0c      	ldr	r3, [pc, #48]	; (4019dc <but2_Handler+0x58>)
   4019aa:	4798      	blx	r3
-	tc_start(TC0, 2);
+		tc_start(TC0, 2);
   4019ac:	2102      	movs	r1, #2
   4019ae:	480c      	ldr	r0, [pc, #48]	; (4019e0 <but2_Handler+0x5c>)
   4019b0:	4b0c      	ldr	r3, [pc, #48]	; (4019e4 <but2_Handler+0x60>)
   4019b2:	4798      	blx	r3
    
-   else{
-    pio_set(LED2_PIO,LED2_PIN_MASK);
-	tc_stop(TC0, 2);
-   }
+	else{
+		pio_set(LED2_PIO,LED2_PIN_MASK);
+		tc_stop(TC0, 2);
+	}
 }
   4019b4:	e008      	b.n	4019c8 <but2_Handler+0x44>
-    pio_set(LED2_PIO,LED2_PIN_MASK);
+		pio_set(LED2_PIO,LED2_PIN_MASK);
   4019b6:	f04f 4180 	mov.w	r1, #1073741824	; 0x40000000
   4019ba:	4805      	ldr	r0, [pc, #20]	; (4019d0 <but2_Handler+0x4c>)
   4019bc:	4b0a      	ldr	r3, [pc, #40]	; (4019e8 <but2_Handler+0x64>)
   4019be:	4798      	blx	r3
-	tc_stop(TC0, 2);
+		tc_stop(TC0, 2);
   4019c0:	2102      	movs	r1, #2
   4019c2:	4807      	ldr	r0, [pc, #28]	; (4019e0 <but2_Handler+0x5c>)
   4019c4:	4b09      	ldr	r3, [pc, #36]	; (4019ec <but2_Handler+0x68>)
@@ -3113,24 +3116,27 @@ void but2_Handler(){
   4019ec:	00401305 	.word	0x00401305
 
 004019f0 <but3_Handler>:
+/**
+ *  Handle Interrupcao botao 1
+ */
 void but3_Handler(){
   4019f0:	b580      	push	{r7, lr}
   4019f2:	b082      	sub	sp, #8
   4019f4:	af00      	add	r7, sp, #0
-    /*
-     *  limpa interrupcao do PIO
-     */
-    uint32_t pioIntStatus;
-    pioIntStatus =  pio_get_interrupt_status(BUT3_PIO);
+	/*
+	*  limpa interrupcao do PIO
+	*/
+	uint32_t pioIntStatus;
+	pioIntStatus =  pio_get_interrupt_status(BUT3_PIO);
   4019f6:	4810      	ldr	r0, [pc, #64]	; (401a38 <but3_Handler+0x48>)
   4019f8:	4b10      	ldr	r3, [pc, #64]	; (401a3c <but3_Handler+0x4c>)
   4019fa:	4798      	blx	r3
   4019fc:	6078      	str	r0, [r7, #4]
     
-   /**
-    *  Toggle status led
-    */
-   if(pio_get_output_data_status(LED3_PIO, LED3_PIN_MASK)){
+	/**
+	*  Toggle status led
+	*/
+	if(pio_get_output_data_status(LED3_PIO, LED3_PIN_MASK)){
   4019fe:	2104      	movs	r1, #4
   401a00:	480f      	ldr	r0, [pc, #60]	; (401a40 <but3_Handler+0x50>)
   401a02:	4b10      	ldr	r3, [pc, #64]	; (401a44 <but3_Handler+0x54>)
@@ -3138,29 +3144,29 @@ void but3_Handler(){
   401a06:	4603      	mov	r3, r0
   401a08:	2b00      	cmp	r3, #0
   401a0a:	d008      	beq.n	401a1e <but3_Handler+0x2e>
-    pio_clear(LED3_PIO, LED3_PIN_MASK);
+		pio_clear(LED3_PIO, LED3_PIN_MASK);
   401a0c:	2104      	movs	r1, #4
   401a0e:	480c      	ldr	r0, [pc, #48]	; (401a40 <but3_Handler+0x50>)
   401a10:	4b0d      	ldr	r3, [pc, #52]	; (401a48 <but3_Handler+0x58>)
   401a12:	4798      	blx	r3
-	tc_start(TC1, 0);
+		tc_start(TC1, 0);
   401a14:	2100      	movs	r1, #0
   401a16:	480d      	ldr	r0, [pc, #52]	; (401a4c <but3_Handler+0x5c>)
   401a18:	4b0d      	ldr	r3, [pc, #52]	; (401a50 <but3_Handler+0x60>)
   401a1a:	4798      	blx	r3
    
-   else{
-    pio_set(LED3_PIO,LED3_PIN_MASK);
-	tc_stop(TC1, 0);
-   }
+	else{
+		pio_set(LED3_PIO,LED3_PIN_MASK);
+		tc_stop(TC1, 0);
+	}
 }
   401a1c:	e007      	b.n	401a2e <but3_Handler+0x3e>
-    pio_set(LED3_PIO,LED3_PIN_MASK);
+		pio_set(LED3_PIO,LED3_PIN_MASK);
   401a1e:	2104      	movs	r1, #4
   401a20:	4807      	ldr	r0, [pc, #28]	; (401a40 <but3_Handler+0x50>)
   401a22:	4b0c      	ldr	r3, [pc, #48]	; (401a54 <but3_Handler+0x64>)
   401a24:	4798      	blx	r3
-	tc_stop(TC1, 0);
+		tc_stop(TC1, 0);
   401a26:	2100      	movs	r1, #0
   401a28:	4808      	ldr	r0, [pc, #32]	; (401a4c <but3_Handler+0x5c>)
   401a2a:	4b0b      	ldr	r3, [pc, #44]	; (401a58 <but3_Handler+0x68>)
@@ -3183,7 +3189,7 @@ void but3_Handler(){
 
 00401a5c <TC0_Handler>:
 /**
- *  Interrupt handler for TC1 interrupt. 
+ *  Interrupt handler for TC0 interrupt. 
  */
 void TC0_Handler(void){
   401a5c:	b580      	push	{r7, lr}
@@ -3191,9 +3197,9 @@ void TC0_Handler(void){
   401a60:	af00      	add	r7, sp, #0
 	volatile uint32_t ul_dummy;
 
-    /****************************************************************
+	/****************************************************************
 	* Devemos indicar ao TC que a interrupção foi satisfeita.
-    ******************************************************************/
+	******************************************************************/
 	ul_dummy = tc_get_status(TC0, 0);
   401a62:	2100      	movs	r1, #0
   401a64:	4807      	ldr	r0, [pc, #28]	; (401a84 <TC0_Handler+0x28>)
@@ -3207,7 +3213,7 @@ void TC0_Handler(void){
   401a6e:	687b      	ldr	r3, [r7, #4]
 
 	/** Muda o estado do LED */
-  pin_toggle(LED_PIO, LED_PIN_MASK);
+	pin_toggle(LED_PIO, LED_PIN_MASK);
   401a70:	f44f 7180 	mov.w	r1, #256	; 0x100
   401a74:	4805      	ldr	r0, [pc, #20]	; (401a8c <TC0_Handler+0x30>)
   401a76:	4b06      	ldr	r3, [pc, #24]	; (401a90 <TC0_Handler+0x34>)
@@ -3224,7 +3230,6 @@ void TC0_Handler(void){
   401a90:	00401ca1 	.word	0x00401ca1
 
 00401a94 <TC1_Handler>:
-
 /**
  *  Interrupt handler for TC1 interrupt. 
  */
@@ -3234,9 +3239,9 @@ void TC1_Handler(void){
   401a98:	af00      	add	r7, sp, #0
 	volatile uint32_t ul_dummy;
 
-    /****************************************************************
+	/****************************************************************
 	* Devemos indicar ao TC que a interrupção foi satisfeita.
-    ******************************************************************/
+	******************************************************************/
 	ul_dummy = tc_get_status(TC0, 1);
   401a9a:	2101      	movs	r1, #1
   401a9c:	4806      	ldr	r0, [pc, #24]	; (401ab8 <TC1_Handler+0x24>)
@@ -3250,7 +3255,7 @@ void TC1_Handler(void){
   401aa6:	687b      	ldr	r3, [r7, #4]
 
 	/** Muda o estado do LED */
-  pin_toggle(LED1_PIO, LED1_PIN_MASK);
+	pin_toggle(LED1_PIO, LED1_PIN_MASK);
   401aa8:	2101      	movs	r1, #1
   401aaa:	4805      	ldr	r0, [pc, #20]	; (401ac0 <TC1_Handler+0x2c>)
   401aac:	4b05      	ldr	r3, [pc, #20]	; (401ac4 <TC1_Handler+0x30>)
@@ -3266,9 +3271,8 @@ void TC1_Handler(void){
   401ac4:	00401ca1 	.word	0x00401ca1
 
 00401ac8 <TC2_Handler>:
-
 /**
- *  Interrupt handler for TC1 interrupt. 
+ *  Interrupt handler for TC2 interrupt. 
  */
 void TC2_Handler(void){
   401ac8:	b580      	push	{r7, lr}
@@ -3276,9 +3280,9 @@ void TC2_Handler(void){
   401acc:	af00      	add	r7, sp, #0
 	volatile uint32_t ul_dummy;
 
-    /****************************************************************
+	/****************************************************************
 	* Devemos indicar ao TC que a interrupção foi satisfeita.
-    ******************************************************************/
+	******************************************************************/
 	ul_dummy = tc_get_status(TC0, 2);
   401ace:	2102      	movs	r1, #2
   401ad0:	4807      	ldr	r0, [pc, #28]	; (401af0 <TC2_Handler+0x28>)
@@ -3292,7 +3296,7 @@ void TC2_Handler(void){
   401ada:	687b      	ldr	r3, [r7, #4]
 
 	/** Muda o estado do LED */
-  pin_toggle(LED2_PIO, LED2_PIN_MASK);
+	pin_toggle(LED2_PIO, LED2_PIN_MASK);
   401adc:	f04f 4180 	mov.w	r1, #1073741824	; 0x40000000
   401ae0:	4805      	ldr	r0, [pc, #20]	; (401af8 <TC2_Handler+0x30>)
   401ae2:	4b06      	ldr	r3, [pc, #24]	; (401afc <TC2_Handler+0x34>)
@@ -3309,9 +3313,8 @@ void TC2_Handler(void){
   401afc:	00401ca1 	.word	0x00401ca1
 
 00401b00 <TC3_Handler>:
-
 /**
- *  Interrupt handler for TC1 interrupt. 
+ *  Interrupt handler for TC4 interrupt. 
  */
 void TC3_Handler(void){
   401b00:	b580      	push	{r7, lr}
@@ -3319,9 +3322,9 @@ void TC3_Handler(void){
   401b04:	af00      	add	r7, sp, #0
 	volatile uint32_t ul_dummy;
 
-    /****************************************************************
+	/****************************************************************
 	* Devemos indicar ao TC que a interrupção foi satisfeita.
-    ******************************************************************/
+	******************************************************************/
 	ul_dummy = tc_get_status(TC1, 0);
   401b06:	2100      	movs	r1, #0
   401b08:	4806      	ldr	r0, [pc, #24]	; (401b24 <TC3_Handler+0x24>)
@@ -3335,7 +3338,7 @@ void TC3_Handler(void){
   401b12:	687b      	ldr	r3, [r7, #4]
 
 	/** Muda o estado do LED */
-  pin_toggle(LED3_PIO, LED3_PIN_MASK);
+	pin_toggle(LED3_PIO, LED3_PIN_MASK);
   401b14:	2104      	movs	r1, #4
   401b16:	4805      	ldr	r0, [pc, #20]	; (401b2c <TC3_Handler+0x2c>)
   401b18:	4b05      	ldr	r3, [pc, #20]	; (401b30 <TC3_Handler+0x30>)
@@ -3372,14 +3375,13 @@ void RTC_Handler(void)
   401b44:	f003 0304 	and.w	r3, r3, #4
   401b48:	2b00      	cmp	r3, #0
   401b4a:	d004      	beq.n	401b56 <RTC_Handler+0x22>
-	
 		rtc_clear_status(RTC, RTC_SCCR_SECCLR);
   401b4c:	2104      	movs	r1, #4
   401b4e:	4848      	ldr	r0, [pc, #288]	; (401c70 <RTC_Handler+0x13c>)
   401b50:	4b49      	ldr	r3, [pc, #292]	; (401c78 <RTC_Handler+0x144>)
   401b52:	4798      	blx	r3
-	  }
-		
+			tc_stop(TC1, 0);
+		}
 		rtc_clear_status(RTC, RTC_SCCR_ALRCLR);
 		}
 	}
@@ -3390,7 +3392,7 @@ void RTC_Handler(void)
   401b58:	f003 0302 	and.w	r3, r3, #2
   401b5c:	2b00      	cmp	r3, #0
   401b5e:	f000 8082 	beq.w	401c66 <RTC_Handler+0x132>
-      rtc_get_date(RTC, &ano, &mes, &dia, NULL);
+		rtc_get_date(RTC, &ano, &mes, &dia, NULL);
   401b62:	f107 0010 	add.w	r0, r7, #16
   401b66:	f107 0214 	add.w	r2, r7, #20
   401b6a:	f107 0118 	add.w	r1, r7, #24
@@ -3400,66 +3402,66 @@ void RTC_Handler(void)
   401b74:	483e      	ldr	r0, [pc, #248]	; (401c70 <RTC_Handler+0x13c>)
   401b76:	4c41      	ldr	r4, [pc, #260]	; (401c7c <RTC_Handler+0x148>)
   401b78:	47a0      	blx	r4
-      rtc_get_time(RTC, &hora, &minuto, &segundo);
+		rtc_get_time(RTC, &hora, &minuto, &segundo);
   401b7a:	1d3b      	adds	r3, r7, #4
   401b7c:	f107 0208 	add.w	r2, r7, #8
   401b80:	f107 010c 	add.w	r1, r7, #12
   401b84:	483a      	ldr	r0, [pc, #232]	; (401c70 <RTC_Handler+0x13c>)
   401b86:	4c3e      	ldr	r4, [pc, #248]	; (401c80 <RTC_Handler+0x14c>)
   401b88:	47a0      	blx	r4
-      if(minuto>=59){
+		if(minuto>=59){
   401b8a:	68bb      	ldr	r3, [r7, #8]
   401b8c:	2b3a      	cmp	r3, #58	; 0x3a
   401b8e:	d920      	bls.n	401bd2 <RTC_Handler+0x9e>
-		  minuto = 0;
+			minuto = 0;
   401b90:	2300      	movs	r3, #0
   401b92:	60bb      	str	r3, [r7, #8]
-		 if(hora>=23){
+			if(hora>=23){
   401b94:	68fb      	ldr	r3, [r7, #12]
   401b96:	2b16      	cmp	r3, #22
   401b98:	d917      	bls.n	401bca <RTC_Handler+0x96>
-			 hora=0;
+				hora=0;
   401b9a:	2300      	movs	r3, #0
   401b9c:	60fb      	str	r3, [r7, #12]
-			 if(dia>=30){
+				if(dia>=30){
   401b9e:	693b      	ldr	r3, [r7, #16]
   401ba0:	2b1d      	cmp	r3, #29
   401ba2:	d90e      	bls.n	401bc2 <RTC_Handler+0x8e>
-				 dia =1;
+					dia =1;
   401ba4:	2301      	movs	r3, #1
   401ba6:	613b      	str	r3, [r7, #16]
-				 if(mes>=12){
+					if(mes>=12){
   401ba8:	697b      	ldr	r3, [r7, #20]
   401baa:	2b0b      	cmp	r3, #11
   401bac:	d905      	bls.n	401bba <RTC_Handler+0x86>
-					 mes =1;
+						mes =1;
   401bae:	2301      	movs	r3, #1
   401bb0:	617b      	str	r3, [r7, #20]
-					 ano++;
+						ano++;
   401bb2:	69bb      	ldr	r3, [r7, #24]
   401bb4:	3301      	adds	r3, #1
   401bb6:	61bb      	str	r3, [r7, #24]
   401bb8:	e00e      	b.n	401bd8 <RTC_Handler+0xa4>
-					 mes++;
+						mes++;
   401bba:	697b      	ldr	r3, [r7, #20]
   401bbc:	3301      	adds	r3, #1
   401bbe:	617b      	str	r3, [r7, #20]
   401bc0:	e00a      	b.n	401bd8 <RTC_Handler+0xa4>
-				 dia++;
+					dia++;
   401bc2:	693b      	ldr	r3, [r7, #16]
   401bc4:	3301      	adds	r3, #1
   401bc6:	613b      	str	r3, [r7, #16]
   401bc8:	e006      	b.n	401bd8 <RTC_Handler+0xa4>
-			 hora++;
+				hora++;
   401bca:	68fb      	ldr	r3, [r7, #12]
   401bcc:	3301      	adds	r3, #1
   401bce:	60fb      	str	r3, [r7, #12]
   401bd0:	e002      	b.n	401bd8 <RTC_Handler+0xa4>
-		minuto++;
+			minuto++;
   401bd2:	68bb      	ldr	r3, [r7, #8]
   401bd4:	3301      	adds	r3, #1
   401bd6:	60bb      	str	r3, [r7, #8]
-      rtc_set_date_alarm(RTC, 1, mes, 1, dia);
+		rtc_set_date_alarm(RTC, 1, mes, 1, dia);
   401bd8:	697a      	ldr	r2, [r7, #20]
   401bda:	693b      	ldr	r3, [r7, #16]
   401bdc:	9300      	str	r3, [sp, #0]
@@ -3468,7 +3470,7 @@ void RTC_Handler(void)
   401be2:	4823      	ldr	r0, [pc, #140]	; (401c70 <RTC_Handler+0x13c>)
   401be4:	4c27      	ldr	r4, [pc, #156]	; (401c84 <RTC_Handler+0x150>)
   401be6:	47a0      	blx	r4
-      rtc_set_time_alarm(RTC, 1, hora, 1, minuto, 1, segundo);
+		rtc_set_time_alarm(RTC, 1, hora, 1, minuto, 1, segundo);
   401be8:	68f9      	ldr	r1, [r7, #12]
   401bea:	68bb      	ldr	r3, [r7, #8]
   401bec:	687a      	ldr	r2, [r7, #4]
@@ -3482,7 +3484,7 @@ void RTC_Handler(void)
   401bfc:	481c      	ldr	r0, [pc, #112]	; (401c70 <RTC_Handler+0x13c>)
   401bfe:	4c22      	ldr	r4, [pc, #136]	; (401c88 <RTC_Handler+0x154>)
   401c00:	47a0      	blx	r4
-      flag_led0 ^= 1;
+		flag_led0 ^= 1;
   401c02:	4b22      	ldr	r3, [pc, #136]	; (401c8c <RTC_Handler+0x158>)
   401c04:	781b      	ldrb	r3, [r3, #0]
   401c06:	b2db      	uxtb	r3, r3
@@ -3490,49 +3492,49 @@ void RTC_Handler(void)
   401c0c:	b2da      	uxtb	r2, r3
   401c0e:	4b1f      	ldr	r3, [pc, #124]	; (401c8c <RTC_Handler+0x158>)
   401c10:	701a      	strb	r2, [r3, #0]
-      if(flag_led0){
+		if(flag_led0){
   401c12:	4b1e      	ldr	r3, [pc, #120]	; (401c8c <RTC_Handler+0x158>)
   401c14:	781b      	ldrb	r3, [r3, #0]
   401c16:	b2db      	uxtb	r3, r3
   401c18:	2b00      	cmp	r3, #0
   401c1a:	d010      	beq.n	401c3e <RTC_Handler+0x10a>
-        tc_start(TC0, 0);
+			tc_start(TC0, 0);
   401c1c:	2100      	movs	r1, #0
   401c1e:	481c      	ldr	r0, [pc, #112]	; (401c90 <RTC_Handler+0x15c>)
   401c20:	4b1c      	ldr	r3, [pc, #112]	; (401c94 <RTC_Handler+0x160>)
   401c22:	4798      	blx	r3
-		tc_start(TC0, 1);
+			tc_start(TC0, 1);
   401c24:	2101      	movs	r1, #1
   401c26:	481a      	ldr	r0, [pc, #104]	; (401c90 <RTC_Handler+0x15c>)
   401c28:	4b1a      	ldr	r3, [pc, #104]	; (401c94 <RTC_Handler+0x160>)
   401c2a:	4798      	blx	r3
-		tc_start(TC0, 2);
+			tc_start(TC0, 2);
   401c2c:	2102      	movs	r1, #2
   401c2e:	4818      	ldr	r0, [pc, #96]	; (401c90 <RTC_Handler+0x15c>)
   401c30:	4b18      	ldr	r3, [pc, #96]	; (401c94 <RTC_Handler+0x160>)
   401c32:	4798      	blx	r3
-		tc_start(TC1, 0);
+			tc_start(TC1, 0);
   401c34:	2100      	movs	r1, #0
   401c36:	4818      	ldr	r0, [pc, #96]	; (401c98 <RTC_Handler+0x164>)
   401c38:	4b16      	ldr	r3, [pc, #88]	; (401c94 <RTC_Handler+0x160>)
   401c3a:	4798      	blx	r3
   401c3c:	e00f      	b.n	401c5e <RTC_Handler+0x12a>
-        tc_stop(TC0, 0);
+			tc_stop(TC0, 0);
   401c3e:	2100      	movs	r1, #0
   401c40:	4813      	ldr	r0, [pc, #76]	; (401c90 <RTC_Handler+0x15c>)
   401c42:	4b16      	ldr	r3, [pc, #88]	; (401c9c <RTC_Handler+0x168>)
   401c44:	4798      	blx	r3
-		tc_stop(TC0, 1);
+			tc_stop(TC0, 1);
   401c46:	2101      	movs	r1, #1
   401c48:	4811      	ldr	r0, [pc, #68]	; (401c90 <RTC_Handler+0x15c>)
   401c4a:	4b14      	ldr	r3, [pc, #80]	; (401c9c <RTC_Handler+0x168>)
   401c4c:	4798      	blx	r3
-		tc_stop(TC0, 2);
+			tc_stop(TC0, 2);
   401c4e:	2102      	movs	r1, #2
   401c50:	480f      	ldr	r0, [pc, #60]	; (401c90 <RTC_Handler+0x15c>)
   401c52:	4b12      	ldr	r3, [pc, #72]	; (401c9c <RTC_Handler+0x168>)
   401c54:	4798      	blx	r3
-		tc_stop(TC1, 0);
+			tc_stop(TC1, 0);
   401c56:	2100      	movs	r1, #0
   401c58:	480f      	ldr	r0, [pc, #60]	; (401c98 <RTC_Handler+0x164>)
   401c5a:	4b10      	ldr	r3, [pc, #64]	; (401c9c <RTC_Handler+0x168>)
@@ -3573,7 +3575,7 @@ void pin_toggle(Pio *pio, uint32_t mask){
   401ca4:	af00      	add	r7, sp, #0
   401ca6:	6078      	str	r0, [r7, #4]
   401ca8:	6039      	str	r1, [r7, #0]
-   if(pio_get_output_data_status(pio, mask))
+	if(pio_get_output_data_status(pio, mask))
   401caa:	6839      	ldr	r1, [r7, #0]
   401cac:	6878      	ldr	r0, [r7, #4]
   401cae:	4b09      	ldr	r3, [pc, #36]	; (401cd4 <pin_toggle+0x34>)
@@ -3581,16 +3583,16 @@ void pin_toggle(Pio *pio, uint32_t mask){
   401cb2:	4603      	mov	r3, r0
   401cb4:	2b00      	cmp	r3, #0
   401cb6:	d004      	beq.n	401cc2 <pin_toggle+0x22>
-    pio_clear(pio, mask);
+		pio_clear(pio, mask);
   401cb8:	6839      	ldr	r1, [r7, #0]
   401cba:	6878      	ldr	r0, [r7, #4]
   401cbc:	4b06      	ldr	r3, [pc, #24]	; (401cd8 <pin_toggle+0x38>)
   401cbe:	4798      	blx	r3
-   else
-    pio_set(pio,mask);
+	else
+		pio_set(pio,mask);
 }
   401cc0:	e003      	b.n	401cca <pin_toggle+0x2a>
-    pio_set(pio,mask);
+		pio_set(pio,mask);
   401cc2:	6839      	ldr	r1, [r7, #0]
   401cc4:	6878      	ldr	r0, [r7, #4]
   401cc6:	4b05      	ldr	r3, [pc, #20]	; (401cdc <pin_toggle+0x3c>)
@@ -3619,26 +3621,26 @@ void BUT_init(Pio *p_pio,const uint32_t ul_mask, const uint32_t ul_attribute,
   401ce8:	60b9      	str	r1, [r7, #8]
   401cea:	607a      	str	r2, [r7, #4]
   401cec:	603b      	str	r3, [r7, #0]
-    /* config. pino botao em modo de entrada */
-    pmc_enable_periph_clk(ul_id);
+	/* config. pino botao em modo de entrada */
+	pmc_enable_periph_clk(ul_id);
   401cee:	6838      	ldr	r0, [r7, #0]
   401cf0:	4b10      	ldr	r3, [pc, #64]	; (401d34 <BUT_init+0x54>)
   401cf2:	4798      	blx	r3
-    pio_set_input(p_pio, ul_mask, ul_attribute);
+	pio_set_input(p_pio, ul_mask, ul_attribute);
   401cf4:	687a      	ldr	r2, [r7, #4]
   401cf6:	68b9      	ldr	r1, [r7, #8]
   401cf8:	68f8      	ldr	r0, [r7, #12]
   401cfa:	4b0f      	ldr	r3, [pc, #60]	; (401d38 <BUT_init+0x58>)
   401cfc:	4798      	blx	r3
     
-    /* config. interrupcao em borda de descida no botao do kit */
-    /* indica funcao (but_Handler) a ser chamada quando houver uma interrupção */
-    pio_enable_interrupt(p_pio, ul_mask);
+	/* config. interrupcao em borda de descida no botao do kit */
+	/* indica funcao (but_Handler) a ser chamada quando houver uma interrupção */
+	pio_enable_interrupt(p_pio, ul_mask);
   401cfe:	68b9      	ldr	r1, [r7, #8]
   401d00:	68f8      	ldr	r0, [r7, #12]
   401d02:	4b0e      	ldr	r3, [pc, #56]	; (401d3c <BUT_init+0x5c>)
   401d04:	4798      	blx	r3
-    pio_handler_set(p_pio, ul_id, ul_mask, ul_attr, p_handler);
+	pio_handler_set(p_pio, ul_id, ul_mask, ul_attr, p_handler);
   401d06:	6a7b      	ldr	r3, [r7, #36]	; 0x24
   401d08:	9300      	str	r3, [sp, #0]
   401d0a:	6a3b      	ldr	r3, [r7, #32]
@@ -3648,15 +3650,15 @@ void BUT_init(Pio *p_pio,const uint32_t ul_mask, const uint32_t ul_attribute,
   401d12:	4c0b      	ldr	r4, [pc, #44]	; (401d40 <BUT_init+0x60>)
   401d14:	47a0      	blx	r4
     
-    /* habilita interrupçcão do PIO que controla o botao */
-    /* e configura sua prioridade                        */
-    NVIC_EnableIRQ(ul_id);
+	/* habilita interrupçcão do PIO que controla o botao */
+	/* e configura sua prioridade                        */
+	NVIC_EnableIRQ(ul_id);
   401d16:	683b      	ldr	r3, [r7, #0]
   401d18:	b25b      	sxtb	r3, r3
   401d1a:	4618      	mov	r0, r3
   401d1c:	4b09      	ldr	r3, [pc, #36]	; (401d44 <BUT_init+0x64>)
   401d1e:	4798      	blx	r3
-    NVIC_SetPriority(ul_id, 1);
+	NVIC_SetPriority(ul_id, 1);
   401d20:	683b      	ldr	r3, [r7, #0]
   401d22:	b25b      	sxtb	r3, r3
   401d24:	2101      	movs	r1, #1
@@ -3688,12 +3690,11 @@ void LED_init(Pio *pio, uint32_t pio_id, uint32_t mask, int estado){
   401d54:	60b9      	str	r1, [r7, #8]
   401d56:	607a      	str	r2, [r7, #4]
   401d58:	603b      	str	r3, [r7, #0]
-    
 	pmc_enable_periph_clk(pio_id);
   401d5a:	68b8      	ldr	r0, [r7, #8]
   401d5c:	4b06      	ldr	r3, [pc, #24]	; (401d78 <LED_init+0x2c>)
   401d5e:	4798      	blx	r3
-    pio_set_output(pio, mask, estado, 0, 0 );
+	pio_set_output(pio, mask, estado, 0, 0 );
   401d60:	683a      	ldr	r2, [r7, #0]
   401d62:	2300      	movs	r3, #0
   401d64:	9300      	str	r3, [sp, #0]
@@ -3713,8 +3714,7 @@ void LED_init(Pio *pio, uint32_t pio_id, uint32_t mask, int estado){
 00401d80 <TC_init>:
 
 /**
- * Configura TimerCounter (TC0) para gerar uma interrupcao no canal 0-(ID_TC1) 
- * a cada 250 ms (4Hz)
+ * Configura TimerCounter para gerar uma interrupcao em um canal, a uma certa frequencia
  */
 void TC_init( Tc *TC, uint32_t ID_TC,  uint32_t channel, uint32_t freq ){   
   401d80:	b590      	push	{r4, r7, lr}
@@ -3724,21 +3724,21 @@ void TC_init( Tc *TC, uint32_t ID_TC,  uint32_t channel, uint32_t freq ){
   401d88:	60b9      	str	r1, [r7, #8]
   401d8a:	607a      	str	r2, [r7, #4]
   401d8c:	603b      	str	r3, [r7, #0]
-    uint32_t ul_div;
-    uint32_t ul_tcclks;
-    uint32_t ul_sysclk = sysclk_get_cpu_hz();
+	uint32_t ul_div;
+	uint32_t ul_tcclks;
+	uint32_t ul_sysclk = sysclk_get_cpu_hz();
   401d8e:	4b1b      	ldr	r3, [pc, #108]	; (401dfc <TC_init+0x7c>)
   401d90:	4798      	blx	r3
   401d92:	61f8      	str	r0, [r7, #28]
      
-    /* Configura o PMC */
-    pmc_enable_periph_clk(ID_TC);    
+	/* Configura o PMC */
+	pmc_enable_periph_clk(ID_TC);    
   401d94:	68b8      	ldr	r0, [r7, #8]
   401d96:	4b1a      	ldr	r3, [pc, #104]	; (401e00 <TC_init+0x80>)
   401d98:	4798      	blx	r3
 
-    /** Configura o TC para operar em  4Mhz e interrupçcão no RC compare */
-    tc_find_mck_divisor(freq, ul_sysclk, &ul_div, &ul_tcclks, ul_sysclk);
+	/** Configura o TC para operar em  4Mhz e interrupçcão no RC compare */
+	tc_find_mck_divisor(freq, ul_sysclk, &ul_div, &ul_tcclks, ul_sysclk);
   401d9a:	f107 0114 	add.w	r1, r7, #20
   401d9e:	f107 0218 	add.w	r2, r7, #24
   401da2:	69fb      	ldr	r3, [r7, #28]
@@ -3748,7 +3748,7 @@ void TC_init( Tc *TC, uint32_t ID_TC,  uint32_t channel, uint32_t freq ){
   401daa:	6838      	ldr	r0, [r7, #0]
   401dac:	4c15      	ldr	r4, [pc, #84]	; (401e04 <TC_init+0x84>)
   401dae:	47a0      	blx	r4
-    tc_init(TC, channel, ul_tcclks | TC_CMR_CPCTRG);
+	tc_init(TC, channel, ul_tcclks | TC_CMR_CPCTRG);
   401db0:	697b      	ldr	r3, [r7, #20]
   401db2:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
   401db6:	461a      	mov	r2, r3
@@ -3756,7 +3756,7 @@ void TC_init( Tc *TC, uint32_t ID_TC,  uint32_t channel, uint32_t freq ){
   401dba:	68f8      	ldr	r0, [r7, #12]
   401dbc:	4b12      	ldr	r3, [pc, #72]	; (401e08 <TC_init+0x88>)
   401dbe:	4798      	blx	r3
-    tc_write_rc(TC, channel, (ul_sysclk / ul_div) / freq);
+	tc_write_rc(TC, channel, (ul_sysclk / ul_div) / freq);
   401dc0:	69bb      	ldr	r3, [r7, #24]
   401dc2:	69fa      	ldr	r2, [r7, #28]
   401dc4:	fbb2 f2f3 	udiv	r2, r2, r3
@@ -3768,22 +3768,22 @@ void TC_init( Tc *TC, uint32_t ID_TC,  uint32_t channel, uint32_t freq ){
   401dd4:	4b0d      	ldr	r3, [pc, #52]	; (401e0c <TC_init+0x8c>)
   401dd6:	4798      	blx	r3
 
-    /* Configura e ativa interrupçcão no TC canal 0 */
-    NVIC_EnableIRQ((IRQn_Type) ID_TC);
+	/* Configura e ativa interrupçcão no TC canal 0 */
+	NVIC_EnableIRQ((IRQn_Type) ID_TC);
   401dd8:	68bb      	ldr	r3, [r7, #8]
   401dda:	b25b      	sxtb	r3, r3
   401ddc:	4618      	mov	r0, r3
   401dde:	4b0c      	ldr	r3, [pc, #48]	; (401e10 <TC_init+0x90>)
   401de0:	4798      	blx	r3
-    tc_enable_interrupt(TC, channel, TC_IER_CPCS);
+	tc_enable_interrupt(TC, channel, TC_IER_CPCS);
   401de2:	2210      	movs	r2, #16
   401de4:	6879      	ldr	r1, [r7, #4]
   401de6:	68f8      	ldr	r0, [r7, #12]
   401de8:	4b0a      	ldr	r3, [pc, #40]	; (401e14 <TC_init+0x94>)
   401dea:	4798      	blx	r3
 
-    /* Inicializa o canal 0 do TC */
-    tc_start(TC, channel);
+	/* Inicializa o canal 0 do TC */
+	tc_start(TC, channel);
   401dec:	6879      	ldr	r1, [r7, #4]
   401dee:	68f8      	ldr	r0, [r7, #12]
   401df0:	4b09      	ldr	r3, [pc, #36]	; (401e18 <TC_init+0x98>)
@@ -3811,21 +3811,21 @@ void RTC_init(){
   401e1c:	b590      	push	{r4, r7, lr}
   401e1e:	b083      	sub	sp, #12
   401e20:	af02      	add	r7, sp, #8
-    /* Configura o PMC */
-    pmc_enable_periph_clk(ID_RTC);
+	/* Configura o PMC */
+	pmc_enable_periph_clk(ID_RTC);
   401e22:	2002      	movs	r0, #2
   401e24:	4b14      	ldr	r3, [pc, #80]	; (401e78 <RTC_init+0x5c>)
   401e26:	4798      	blx	r3
         
-    /* Default RTC configuration, 24-hour mode */
-    rtc_set_hour_mode(RTC, 0);
+	/* Default RTC configuration, 24-hour mode */
+	rtc_set_hour_mode(RTC, 0);
   401e28:	2100      	movs	r1, #0
   401e2a:	4814      	ldr	r0, [pc, #80]	; (401e7c <RTC_init+0x60>)
   401e2c:	4b14      	ldr	r3, [pc, #80]	; (401e80 <RTC_init+0x64>)
   401e2e:	4798      	blx	r3
 
-    /* Configura data e hora manualmente */
-    rtc_set_date(RTC, YEAR, MOUNTH, DAY, WEEK);
+	/* Configura data e hora manualmente */
+	rtc_set_date(RTC, YEAR, MOUNTH, DAY, WEEK);
   401e30:	230d      	movs	r3, #13
   401e32:	9300      	str	r3, [sp, #0]
   401e34:	231b      	movs	r3, #27
@@ -3834,7 +3834,7 @@ void RTC_init(){
   401e3c:	480f      	ldr	r0, [pc, #60]	; (401e7c <RTC_init+0x60>)
   401e3e:	4c11      	ldr	r4, [pc, #68]	; (401e84 <RTC_init+0x68>)
   401e40:	47a0      	blx	r4
-    rtc_set_time(RTC, HOUR, MINUTE, SECOND);
+	rtc_set_time(RTC, HOUR, MINUTE, SECOND);
   401e42:	2300      	movs	r3, #0
   401e44:	2205      	movs	r2, #5
   401e46:	2109      	movs	r1, #9
@@ -3842,27 +3842,27 @@ void RTC_init(){
   401e4a:	4c0f      	ldr	r4, [pc, #60]	; (401e88 <RTC_init+0x6c>)
   401e4c:	47a0      	blx	r4
 
-    /* Configure RTC interrupts */
-    NVIC_DisableIRQ(RTC_IRQn);
+	/* Configure RTC interrupts */
+	NVIC_DisableIRQ(RTC_IRQn);
   401e4e:	2002      	movs	r0, #2
   401e50:	4b0e      	ldr	r3, [pc, #56]	; (401e8c <RTC_init+0x70>)
   401e52:	4798      	blx	r3
-    NVIC_ClearPendingIRQ(RTC_IRQn);
+	NVIC_ClearPendingIRQ(RTC_IRQn);
   401e54:	2002      	movs	r0, #2
   401e56:	4b0e      	ldr	r3, [pc, #56]	; (401e90 <RTC_init+0x74>)
   401e58:	4798      	blx	r3
-    NVIC_SetPriority(RTC_IRQn, 0);
+	NVIC_SetPriority(RTC_IRQn, 0);
   401e5a:	2100      	movs	r1, #0
   401e5c:	2002      	movs	r0, #2
   401e5e:	4b0d      	ldr	r3, [pc, #52]	; (401e94 <RTC_init+0x78>)
   401e60:	4798      	blx	r3
-    NVIC_EnableIRQ(RTC_IRQn);
+	NVIC_EnableIRQ(RTC_IRQn);
   401e62:	2002      	movs	r0, #2
   401e64:	4b0c      	ldr	r3, [pc, #48]	; (401e98 <RTC_init+0x7c>)
   401e66:	4798      	blx	r3
     
-    /* Ativa interrupcao via alarme */
-    rtc_enable_interrupt(RTC,  RTC_IER_ALREN); 
+	/* Ativa interrupcao via alarme */
+	rtc_enable_interrupt(RTC,  RTC_IER_ALREN); 
   401e68:	2102      	movs	r1, #2
   401e6a:	4804      	ldr	r0, [pc, #16]	; (401e7c <RTC_init+0x60>)
   401e6c:	4b0b      	ldr	r3, [pc, #44]	; (401e9c <RTC_init+0x80>)
@@ -3969,7 +3969,7 @@ int main(void){
   401f24:	4c20      	ldr	r4, [pc, #128]	; (401fa8 <main+0x108>)
   401f26:	47a0      	blx	r4
     
-	/** Configura timer 0 */
+	/** Configura os TCs */
 	TC_init(TC0, ID_TC0, 0, 4);
   401f28:	2304      	movs	r3, #4
   401f2a:	2200      	movs	r2, #0

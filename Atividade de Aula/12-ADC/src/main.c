@@ -27,7 +27,7 @@
 #define DAY         27
 #define WEEK        13
 #define HOUR        9
-#define MINUTE      5
+#define MINUTE      6
 #define SECOND      0
 
 #define FREQ		1
@@ -117,9 +117,13 @@ void TC1_Handler(void){
 	UNUSED(ul_dummy);
 	rtc_get_date(RTC, &ano, &mes, &dia, &semana);
 	rtc_get_time(RTC, &hora, &minuto, &segundo);
-	printf("%d h %d-%d-%d : Temperatura Interna %dC : %d \r\n",hora,minuto, dia, mes, ano, (int) convert_adc_to_temp(g_ul_value));
 
 	afec_start_software_conversion(AFEC0);
+	
+	if(is_conversion_done == true) {
+		is_conversion_done = false;
+		printf("%dh%d %d-%d-%d : Temperatura Interna %dC : %d \r\n", hora, minuto, dia, mes, ano, (int) convert_adc_to_temp(g_ul_value));
+	}
 
 }
 
@@ -239,9 +243,6 @@ int main(void)
 	RTC_init();
 
 	while (1) {
-		//if(is_conversion_done == true) {
-			//is_conversion_done = false;
-			//printf("Temp : %d \r\n",(int)convert_adc_to_temp(g_ul_value) );					
-		//}
+
 	}	
 }

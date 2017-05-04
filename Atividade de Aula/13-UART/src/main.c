@@ -33,6 +33,8 @@
  /* buffer para transmissão de dados */
  uint8_t bufferTX[100];
 
+/*flag para indicar que o buffer esta montado*/
+uint8_t buffer_montado = 0;
 /************************************************************************/
 /* PROTOTYPES                                                           */
 /************************************************************************/
@@ -59,13 +61,11 @@ static void Button1_Handler(uint32_t id, uint32_t mask)
 void USART1_Handler(void){
   uint32_t ret = usart_get_status(USART_COM);
   uint8_t  c;
-  
+  uint8_t f;
   // Verifica por qual motivo entrou na interrupçcao
   if(ret & US_IER_RXRDY){                     // Dado disponível para leitura
-    usart_serial_getchar(USART_COM, &c);
-    usart_puts(bufferTX);
+	f = usart_gets(bufferRX);
   } else if(ret & US_IER_TXRDY){              // Transmissão finalizada
-    
   }
 }
 
@@ -152,16 +152,14 @@ static void USART1_init(void){
  */
 uint32_t usart_puts(uint8_t *pstring){
 	uint32_t i = 0;
-	uint32_t enviou = 0;
 	while(pstring[i]!=NULL){
-		if(!enviou){
-			usart_serial_putchar(USART1,pstring[i]);
-			i++;
+		usart_serial_putchar(USART1,pstring[i]);
+		while (uart_is_tx_empty(ID_USART1)){
+			//espernado a transmissão ser concluída antes do envio do próxima byte
 		}
-		enviou = uart_is_tx_empty(USART1);
+		i++;
 	}
-
-  return i;
+	return i;
 }
 
 /*
@@ -179,7 +177,9 @@ uint32_t usart_gets(uint8_t *pstring){
 		pstring[i] = char_recebido;	
 		i++;
 	}
-  return i;  
+	buffer_montado=1;
+	
+	return i;  
 }
 
 /************************************************************************/
@@ -208,9 +208,9 @@ int main(void){
         
 	while (1) {
     sprintf(bufferTX, "%s \n", "Ola Voce");
-    usart_puts(bufferTX);
-	//usart_gets(bufferRX);
-	//usart_puts(bufferRX);
+	if(buffer_montado == 1){
+		usart_puts(bufferTX);
+	}
     delay_s(1);
 	}
 }

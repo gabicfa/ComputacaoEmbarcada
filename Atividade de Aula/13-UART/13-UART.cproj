@@ -655,6 +655,7 @@
     <Folder Include="src\ASF\thirdparty\CMSIS\Lib\" />
     <Folder Include="src\ASF\thirdparty\CMSIS\Lib\GCC\" />
     <Folder Include="src\config\" />
+    <Folder Include="src\Driver\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\asf.h">
@@ -1230,6 +1231,18 @@
     <None Include="src\config\conf_sleepmgr.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\Driver\pio_insper.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Driver\pio_insper.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Driver\pmc_insper.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Driver\pmc_insper.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>

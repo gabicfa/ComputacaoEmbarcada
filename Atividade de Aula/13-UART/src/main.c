@@ -35,6 +35,7 @@
 
 /*flag para indicar que o buffer esta montado*/
 uint8_t buffer_montado = 0;
+uint8_t counter = 0;
 /************************************************************************/
 /* PROTOTYPES                                                           */
 /************************************************************************/
@@ -61,10 +62,21 @@ static void Button1_Handler(uint32_t id, uint32_t mask)
 void USART1_Handler(void){
   uint32_t ret = usart_get_status(USART_COM);
   uint8_t  c;
-  uint8_t f;
+  
+  
   // Verifica por qual motivo entrou na interrupçcao
   if(ret & US_IER_RXRDY){                     // Dado disponível para leitura
-	f = usart_gets(bufferRX);
+	usart_serial_putchar(USART1, &c);
+	if(c!='\n'){
+		bufferRX[counter] = c;
+		counter++;
+		buffer_montado = 0;
+	}
+	else{
+		bufferRX[counter]=NULL;
+		counter = 0;
+		buffer_montado =1; 
+	}
   } else if(ret & US_IER_TXRDY){              // Transmissão finalizada
   }
 }
@@ -176,9 +188,7 @@ uint32_t usart_gets(uint8_t *pstring){
 		usart_serial_getchar(USART1,&char_recebido);
 		pstring[i] = char_recebido;	
 		i++;
-	}
-	buffer_montado=1;
-	
+	}	
 	return i;  
 }
 

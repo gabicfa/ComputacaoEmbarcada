@@ -23,6 +23,7 @@ public class DeviceListActivity extends Activity {
     // Debugging for LOGCAT
     private static final String TAG = "DeviceListActivity";
     private static final boolean D = true;
+    Button button;
 
 
     // declare button for launching website and textview for connection status
@@ -40,6 +41,16 @@ public class DeviceListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.device_list);
+
+        button=(Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeviceListActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override

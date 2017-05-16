@@ -44,9 +44,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        //Link the buttons and textViews to respective views
-//        btnOn = (Button) findViewById(R.id.buttonOn);
-//        btnOff = (Button) findViewById(R.id.buttonOff);
+        //Link the textViews to respective views
         txtString = (TextView) findViewById(R.id.txtString);
         txtStringLength = (TextView) findViewById(R.id.testView1);
         sensorView0 = (TextView) findViewById(R.id.moduleView0);
@@ -65,15 +63,9 @@ public class MainActivity extends Activity {
 
                         if (recDataString.charAt(0) == '#')                             //if it starts with # we know it is what we are looking for
                         {
-                            String Modulo0 = recDataString.substring(1, 5);             //get sensor value from string between indices 1-5
-//                            String sensor1 = recDataString.substring(6, 10);            //same again...
-//                            String sensor2 = recDataString.substring(11, 15);
-//                            String sensor3 = recDataString.substring(16, 20);
+                            String Modulo0 = recDataString.substring(1, dataLength);             //get sensor value from string between indices 1-dataLenght
 
-                            sensorView0.setText(" Modulo Aceleracao = " + Modulo0 + "V");    //update the textviews with sensor values
-//                            sensorView1.setText(" Sensor 1 Voltage = " + sensor1 + "V");
-//                            sensorView2.setText(" Sensor 2 Voltage = " + sensor2 + "V");
-//                            sensorView3.setText(" Sensor 3 Voltage = " + sensor3 + "V");
+                            sensorView0.setText(" Modulo Aceleracao = " + Modulo0);    //update the textviews with acelerometro values
                         }
                         recDataString.delete(0, recDataString.length());                    //clear all string data
                         // strIncom =" ";

@@ -314,7 +314,12 @@ void usart_puts_dma(uint32_t *pstring, uint8_t nChars){
   uart_xdmac_Tx(USART_XDMA_DEST_REG, (uint32_t) pstring, nChars);
 }
 void usart_gets_dma(uint8_t *pstring, int nChars){
-	
+	uint8_t char_recebido;
+	while(flag_rx == 0){}
+	for (uint32_t i = 0; i<nChars; i++ ){
+		usart_serial_getchar(USART1, &char_recebido);
+		pstring[i]=char_recebido;
+	}
 }
 
 /************************************************************************/

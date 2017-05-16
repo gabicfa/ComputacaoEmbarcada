@@ -205,7 +205,7 @@ int main(void){
 	/* Entra em modo sleep */
 		 //printf("AT+ROLE=1\r\n");
     printf("%s \n", "Ola voce" );
-    gets(bufferRX);
+    //gets(bufferRX);
     //usart_putchar(USART0, 0xFA);
     //printf("%AT\r\n");
     delay_ms(500);

@@ -79,8 +79,8 @@ uint32_t usart_gets(uint8_t *pstring);
 static void uart_xdmac_configure();
 static void uart_xdmac_Tx(uint32_t *peripheral_address,uint32_t *orgin_address, uint32_t buffer_size);
 static void uart_xdmac_Rx(uint32_t *peripheral_address, uint32_t *orgin_address,uint32_t buffer_size);
-void usart_puts_dma(uint8_t *pstring);
-void usart_gets_dma(uint8_t *pstring, int nChars);
+void usart_puts_dma(uint8_t *pstring, uint8_t nChars);
+void usart_gets_dma(uint8_t *pstring, uint8_t nChars);
 
 
 /************************************************************************/
@@ -310,16 +310,13 @@ uint32_t usart_gets(uint8_t *pstring){
   return 0;  
 }
 
-void usart_puts_dma(uint32_t *pstring, uint8_t nChars){
-  uart_xdmac_Tx(USART_XDMA_DEST_REG, (uint32_t) pstring, nChars);
+void usart_puts_dma(uint8_t *pstring, uint8_t nChars){
+	
+	uart_xdmac_Tx(USART_XDMA_DEST_REG, (uint32_t) pstring, nChars);
 }
-void usart_gets_dma(uint8_t *pstring, int nChars){
-	uint8_t char_recebido;
-	while(flag_rx == 0){}
-	for (uint32_t i = 0; i<nChars; i++ ){
-		usart_serial_getchar(USART1, &char_recebido);
-		pstring[i]=char_recebido;
-	}
+
+void usart_gets_dma(uint8_t *pstring, uint8_t nChars){
+	uart_xdmac_Rx(USART_XDMA_ORIG_REG, pstring, nChars);
 }
 
 /************************************************************************/
@@ -357,10 +354,14 @@ int main(void){
 	
 	while (1) {
 	uint8_t string[] = "Ola voce \n";
-	uint32_t nChar = sizeof(string);
-	usart_puts_dma(string, nChar)
-    //usart_puts(bufferTX);
-   // usart_gets(bufferRX);
+	uint8_t nChar = sizeof(string);
+	usart_puts_dma(string, nChar);
+	usart_gets_dma(string,nChar);
+
+	if(flag_rx == 1){
+		flag_rx = 0;
+	}
+    
     delay_s(1);
 	}
 }
